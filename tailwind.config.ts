@@ -1,15 +1,15 @@
+import type { Config } from 'tailwindcss'
+import defaultTheme from 'tailwindcss/defaultTheme'
 import tailwindCssAnimate from 'tailwindcss-animate'
-import { fontFamily } from 'tailwindcss/defaultTheme'
-import { fonts } from './src/config/fonts'
+import { fonts } from './src/config/fonts' // giữ nguyên nếu fonts.ts cùng dùng TypeScript
 
-/** @type {import('tailwindcss').Config} */
-export default {
+const config: Config = {
   darkMode: ['class'],
   content: ['./index.html', './src/**/*.{ts,tsx,js,jsx}'],
   safelist: fonts.map((font) => `font-${font}`),
   theme: {
     container: {
-      center: 'true',
+      center: true,
       padding: '2rem',
       screens: {
         '2xl': '1400px',
@@ -17,8 +17,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        inter: ['Inter', ...fontFamily.sans],
-        manrope: ['Manrope', ...fontFamily.sans],
+        inter: ['Inter', ...defaultTheme.fontFamily.sans],
+        manrope: ['Manrope', ...defaultTheme.fontFamily.sans],
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -81,3 +81,5 @@ export default {
   },
   plugins: [tailwindCssAnimate],
 }
+
+export default config
